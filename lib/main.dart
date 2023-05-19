@@ -1,4 +1,3 @@
-
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_v1/services/locater.dart';
 import 'package:provider/provider.dart';
 import 'controller/auth_provider.dart';
+import 'controller/chats_provider.dart';
 import 'firebase_options.dart';
 import 'helper/router/Router.dart';
 import 'helper/router/router_path.dart';
@@ -18,8 +18,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAppCheck.instance.activate( androidProvider: AndroidProvider.debug,
-    appleProvider: AppleProvider.debug,);
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.debug,
+    appleProvider: AppleProvider.debug,
+  );
 
   registerServices();
   runApp(const MyApp());

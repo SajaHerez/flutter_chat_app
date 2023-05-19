@@ -16,6 +16,17 @@ class TextStyleHelper {
       fontWeight: FontWeights.regular,
       fontSize: FontSize.FS18,
       color: Colors.white);
+  static TextStyle massageTitleStyle = const TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+    static TextStyle massageSubTitleStyle = const  TextStyle(
+          color: Colors.white54,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+        );
   static TextStyle massageStyle = TextStyle(
       fontWeight: FontWeights.regular,
       fontSize: FontSize.FS16,
