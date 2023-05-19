@@ -1,0 +1,1 @@
+String appIconPath="assets/images/app_icon.png";
