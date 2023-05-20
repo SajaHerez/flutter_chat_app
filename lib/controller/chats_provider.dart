@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app_v1/data/model/chat_user.dart';
-
-import '../data/model/chat.dart';
-import '../data/model/chat_message.dart';
+import 'package:flutter_chat_app_v1/model/chat_user.dart';
+import '../model/chat_message.dart';
 import '../services/database_service.dart';
 import '../services/locater.dart';
 import 'auth_provider.dart';
+import '../../model/chat.dart';
 
 class ChatListPervider extends ChangeNotifier {
   AuthProvider _authProvider;
@@ -16,6 +15,7 @@ class ChatListPervider extends ChangeNotifier {
   late StreamSubscription _chatStream;
   ChatListPervider(this._authProvider) {
     _db = getIt<DatabaseService>();
+    chats = [];
     getChats();
   }
 

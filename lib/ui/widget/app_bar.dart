@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../../helper/theme/fonts_helper.dart';
 import '../../helper/theme/text_style_helper.dart';
 
 class TopBar extends StatelessWidget {
   String _barTitle;
   Widget? primaryAction;
   Widget? secondaryAction;
-
+  double fontSize;
   late double _deviceHeight;
   late double _deviceWidth;
 
   TopBar(
     this._barTitle, {
+    this.fontSize = 30,
     this.primaryAction,
     this.secondaryAction,
   });
@@ -38,6 +40,9 @@ class TopBar extends StatelessWidget {
 
   Widget _titleBar() {
     return Text(_barTitle,
-        overflow: TextOverflow.ellipsis, style: TextStyleHelper.mainTitleStyle);
+        overflow: TextOverflow.ellipsis, style:  TextStyle(
+      fontWeight: FontWeights.medium,
+      fontSize:fontSize,
+      color: Colors.white));
   }
 }

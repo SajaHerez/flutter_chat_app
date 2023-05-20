@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../data/model/chat_user.dart';
+import '../model/chat_user.dart';
 import '../helper/router/router_path.dart';
 import '../helper/router/routing_helper.dart';
 import '../services/database_service.dart';
