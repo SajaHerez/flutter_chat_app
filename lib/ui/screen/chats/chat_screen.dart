@@ -62,7 +62,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       icon: const Icon(
                         Icons.logout_rounded,
                         color: Color.fromRGBO(0, 82, 218, 1.0),
-                      ))),
+                      ))
+                      ),
                      const  ChatBodyWidget()
             ],
           ),

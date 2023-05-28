@@ -28,6 +28,16 @@ class DatabaseService {
     return fireStore.collection(USER_COLLECTION).doc(uid).get();
   }
 
+  Future<QuerySnapshot> getUsers(String? name) async {
+    Query _query = fireStore.collection(USER_COLLECTION);
+    if (name != null) {
+      _query = _query
+          .where('name', isGreaterThanOrEqualTo: name)
+          .where('name', isLessThanOrEqualTo: name + 'z');
+    }
+    return _query.get();
+  }
+
   Future<void> updateUserLastActiveTime(String uid) async {
     try {
       fireStore
@@ -89,6 +99,16 @@ class DatabaseService {
   Future<void> deleteChat(String chatID) async {
     try {
       await fireStore.collection(CHAT_COLLECTION).doc(chatID).delete();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+ Future<DocumentReference?> createChat(Map<String, dynamic> data) async {
+    try {
+      DocumentReference chat =
+          await fireStore.collection(CHAT_COLLECTION).add(data);
+      return chat;
     } catch (e) {
       print(e);
     }

@@ -9,7 +9,7 @@ import '../../../helper/router/router_path.dart';
 import '../../../helper/router/routing_helper.dart';
 import '../../../services/locater.dart';
 import '../chats/chat_screen.dart';
-import '../user/user_screen.dart';
+import '../users/users_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentScreen = 0;
-  final List<Widget> _pages = const [ChatScreen(), UserScreen()];
+  final List<Widget> _pages = const [ChatScreen(), UsersScreen()];
 
   void currentIndex(int value) {
     setState(() {
