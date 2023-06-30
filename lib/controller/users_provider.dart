@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_v1/services/locater.dart';
 
+import '../helper/router/router_path.dart';
 import '../helper/router/routing_helper.dart';
+import '../model/chat.dart';
 import '../model/chat_user.dart';
 import '../services/database_service.dart';
+import '../ui/screen/chats/messaging_screen.dart';
 import 'auth_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +53,7 @@ class UsersProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void createChat(Map<String, dynamic> data) async {
+  void createChat() async {
     try {
       List<String> _membersIds =
           _listSelectedUsers.map((_user) => _user.uid).toList();
@@ -63,11 +66,27 @@ class UsersProvider extends ChangeNotifier {
           "members": _membersIds,
         },
       );
+      List<ChatUser> members = [];
+      for (var uid in _membersIds) {
+        final snap = await _databaseService.getUser(uid);
+        Map<String, dynamic> userData = snap.data() as Map<String, dynamic>;
+        userData["uid"] = snap.id;
+        members.add(ChatUser.fromJson(userData));
+      }
+      MessagingScreen _chatPage = MessagingScreen(
+        chat: Chat(
+            uid: _doc!.id,
+            currentUserUid: _authProvider.chatUser.uid,
+            members: members,
+            messages: [],
+            activity: false,
+            group: _isGroup),
+      );
+      _listSelectedUsers = [];
+      notifyListeners();
 
-
-
-
-      
+      _routingHelper.pushReplacement(RouterName.messgingScreen,
+          arguments: _chatPage);
     } catch (e) {
       print('Error in creating chat');
       print(e);

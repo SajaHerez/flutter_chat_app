@@ -9,6 +9,7 @@ import '../../../services/locater.dart';
 import '../../widget/app_bar.dart';
 import '../../widget/custom_input_field.dart';
 import '../../widget/custom_list_tiles.dart';
+import '../../widget/rounded_button.dart';
 
 class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key});
@@ -71,6 +72,7 @@ class _UsersScreenState extends State<UsersScreen> {
                   },
                 ),
                 listview(),
+                _createButton()
               ],
             ),
           );
@@ -122,5 +124,21 @@ class _UsersScreenState extends State<UsersScreen> {
         );
       }
     }());
+  }
+
+  Widget _createButton() {
+    return Visibility(
+      visible: _usersProvider.selectedUsers.isNotEmpty,
+      child: RoundedButton(
+        name: _usersProvider.selectedUsers.length == 1
+            ? "Chat With ${_usersProvider.selectedUsers.first.name}"
+            : "Create Group Chat",
+        height: _deviceHeight * 0.08,
+        width: _deviceWidth * 0.80,
+        onPressed: () {
+          _usersProvider.createChat();
+        },
+      ),
+    );
   }
 }
